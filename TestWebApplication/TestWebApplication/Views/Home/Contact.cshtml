@@ -1,24 +1,57 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Kontaktformular";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
-<form>
-    First Name: <br>
-    <input type="text" name="firstname">
-    <br>
-    Last Name: <br>
-    <input type="text" name="firstname">
-    <br>
-    Birthday: <br>
-    <input type="text" name="firstname">
-    <br>
-    Hometown: <br>
-    <input type="text" name="firstname">
-</form>
+@{
+    if (IsPost)
+    {
+        string firstname = Request["FirstName"];
+        string lastname = Request["LastName"];
+        string birthday = Request["Birthday"];
+        string hometown = Request["Hometown"];
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+        <p>
+            <table>
+                <tr>
+                    <td>First Name:</td>
+                    <td>@firstname</td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>@lastname</td>
+                </tr>
+                <tr>
+                    <td>Birthday:</td>
+                    <td>@birthday</td>
+                </tr>
+                <tr>
+                    <td>Hometown:</td>
+                    <td>@hometown</td>
+                </tr>
+            </table>
+            
+            <button>Delete Data</button>
+
+        </p>
+    }
+    else
+    {
+        <form method="post" action="">
+            First Name: <br>
+            <input type="text" id="firstname" name="firstname">
+            <br>
+            Last Name: <br>
+            <input type="text" id="lastname" name="lastname">
+            <br>
+            Birthday: <br>
+            <input type="text" id="birthday" name="birthday">
+            <br>
+            Hometown: <br>
+            <input type="text" id="hometown" name="hometown">
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    }
+}
